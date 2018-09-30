@@ -7,6 +7,8 @@ Created on Sun Sep 30 13:09:29 2018
 
 import Data_Quality as DQ
 
-dataWork = DQ.Rules('people.csv', ';')
+dataWork = DQ.Rules('people.csv', ';', False)
 
-print(dataWork.checkPattern('email', '[a-z]+@[a-z]+.com', False))
+print(dataWork.checkPattern('email', '[a-z]+@[a-z]+.com'))
+
+print(dataWork.inListReference('jobs.csv', 'job'))

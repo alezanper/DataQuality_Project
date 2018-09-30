@@ -11,27 +11,65 @@ encoding = 'iso-8859-1'
 
 class Rules:
     
-    data = pd.DataFrame()
-    counter = 0
+    
+    data = pd.DataFrame()   # Data to work with
+    counter = 0             # Size of dataFrame
+    goods = False           # False for return bad registers
+    delimiter = ','
     
     """
     Loading file into dataframe
     """
-    def __init__(self, filename, delimiter):
-        #Creating Dataframe
+    def __init__(self, filename, delimiter, goods):
         self.data = pd.read_csv(filename,
                        delimiter = delimiter,
                        encoding = encoding)
         
-        # Size of dataframe
         self.counter = (self.data).shape[0]
+        self.goods = goods
+        self.delimiter = delimiter
+    
 
     """
     Checking for pattern
     """
-    def checkPattern(self, columnToAnalize, pattern, goods):
-        #Checking pattern and returning data that match or not match with pattern
+    def checkPattern(self, columnToAnalize, pattern):
+        #Checking pattern and returning data that match or not with pattern
         return self.data[self.data[columnToAnalize].
-                         str.contains(pattern, regex=True) == goods]
+                         str.contains(pattern, regex=True) 
+                         == self.goods]
+    
+    
+    """
+    Checking for data in list reference
+    """
+    def inListReference(self, listname, columnToAnalize):   
+        listref = pd.read_csv(listname,
+                       delimiter = self.delimiter,
+                       encoding = encoding)
+        
+        return self.data[self.data[columnToAnalize].
+                         isin(list(listref['job']))
+                         == self.goods]
+        
+    
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         
 
