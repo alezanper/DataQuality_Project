@@ -28,7 +28,27 @@ class Rules:
         self.counter = (self.data).shape[0]
         self.goods = goods
         self.delimiter = delimiter
+        
+        
+    """
+    Checking for null values
+    """
+    def checkNull(self, columnToAnalize):
+        #Checking for null values
+        return self.data[self.data[columnToAnalize].isna()
+                         == (not self.goods)]
     
+    
+    """
+    Checking for unicity
+    """
+    def checkUnity(self, columnToAnalize, maxRepeated):
+        #Checking for null values
+        if(self.goods):
+            return self.data.groupby(columnToAnalize).filter(lambda x: len(x) == 1)
+        else:
+            return self.data.groupby(columnToAnalize).filter(lambda x: len(x) > maxRepeated)
+        
 
     """
     Checking for pattern
@@ -37,13 +57,13 @@ class Rules:
         #Checking pattern and returning data that match or not with pattern
         return self.data[self.data[columnToAnalize].
                          str.contains(pattern, regex=True) 
-                         == self.goods]
+                         == self.goods].append(self.checkNull(columnToAnalize))
     
     
     """
     Checking for data in list reference
     """
-    def inListReference(self, listname, columnToAnalize):   
+    def checkListReference(self, listname, columnToAnalize):   
         listref = pd.read_csv(listname,
                        delimiter = self.delimiter,
                        encoding = encoding)
@@ -51,6 +71,14 @@ class Rules:
         return self.data[self.data[columnToAnalize].
                          isin(list(listref['job']))
                          == self.goods]
+        
+
+    """
+    Checking for email structure
+    """
+    def checkEmail(self, columnToAnalize):
+        return self.checkPattern(columnToAnalize, '[\w]+@[\w]+.com')
+        
         
     
         

@@ -10,21 +10,21 @@ Marisol;Front Developer;F;24;74000;Project A;Marisol@domain.com
 Mmartha;Front Developer;F;22;75000;Project A;Mmartha@domain.com
 Antony;Software Developer;M;23;77000;Project A;Antony@domain.com
 Antony;Software Developer;M;23;77000;Project A;Antony@domain.com
-Lucia;Software Developer;F;23;77000;Project A;Lucia@domain.com
+Lucia;Software Developer;F;23;77000;Project A;
 Melanye;Software Developer;F;23;77000;Project B;Melanye@domain.com
 Ana;Software Developer;F;24;77000;Project A;Ana@@domain.com
 Ana;Software Developer;F;27;77000;Project A;Ana@domain.com
 Antonio;Software Developer;M;31;77000;Project A;Antonio@domain.com
 Johan;Software Developer;M;34;77000;Project A;Johan@domain.com
 Johan;Software Developer;M;34;77000;Project B;Johan@domain.com
-David;Software Developer;M;33;79000;Project A;David@domain.com
+David;;M;33;79000;Project A;David@domain.com
 Jenny;Software Developer;F;24;80000;Project A;Jenny@domain.com
 Andrew;Front Developer;M;25;80000;Project B;Andrew@domain..com
 Justin;Data Engineer;M;25;80000;Project A;Justin@domain.com
 Ana;Intern;F;28;80000;Project A;Ana@domain.com
-Andrea;Front Developer;F;28;80000;Project C;Andrea@domain.com
+Andrea;Front Developer;F;28;80000;Project C;A
 Angelica;Front Developer;F;28;80000;Project A;Angelica@domain.com
-Manolo;Data Engineer;M;28;80000;Project A;Manolo@domain.com
+Manolo;Data Engineer;M;28;80000;Project A;
 Bart;Software Developer;M;30;80000;Project A;Bart@domain.com
 Bert;Software Developer;M;30;80000;Project A;Bart@domain.com
 Belinda;Software Developer;F;30;80000;Project A;Belinda@domain.com
@@ -78,7 +78,7 @@ Justin;Software Developer;M;25;83000;Project A;Justin@domain.com
 Justin;Data Engineer;M;25;83000;Project A;Justin@domain.com
 Angela;Front Developer;F;28;83000;Project A;Angela@domain.com
 Martin;Data Engineer;M;29;83000;Project A;Martin@domain.com
-Anabelle;Front Developer;F;31;83000;Project A;Anabelle@domain.com
+Anabelle;Front Developer;F;31;83000;Project A;
 Carlos;Software Developer;M;33;83000;Project A;Carlos@domain.com
 Deivi;Software Developer;M;23;85000;Project A;Deivi@domain.com
 Labanda;Software Developer;F;23;85000;Project A;Labanda@domain.com
@@ -154,7 +154,7 @@ Angela;Front Developer;F;35;98000;Project B;Angela@domain.com
 Ned;Data Engineer;M;35;100000;Project B;Ned@domain.com
 Jenny;Data Engineer;F;38;102000;Project B;Jenny@domain.com
 Joaquin;Data Engineer;M;39;102000;Project B;Joaquin@domain.com
-Peter;Data Engineer;M;42;102000;Project B;Peter@domain.com
+Peter;Data Engineer;M;42;102000;Project B;
 Andrea;Front Developer;F;38;105000;Project B;Andrea@domain.com
 Margarette;Data Engineer;F;40;110000;Project B;Margarette@domain.com
 Peter;Data Engineer;M;42;110000;Project B;Peter@domain.com
