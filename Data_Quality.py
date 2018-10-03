@@ -6,6 +6,7 @@ Created on Sun Sep 01 13:00:15 2018
 """
 
 import pandas as pd 
+import itertools
 
 encoding = 'iso-8859-1'
 
@@ -79,7 +80,18 @@ class Rules:
     def checkEmail(self, columnToAnalize):
         return self.checkPattern(columnToAnalize, '[\w]+@[\w]+.com')
         
-        
+    
+    """
+    Split
+    """
+    def split (filename, numLines):
+        with open(filename, encoding = encoding) as f:
+            file = f.readlines()
+            size = len(file)
+            
+            for i in range(int(size/numLines)+1):
+                with open(filename +  str(i), "w", encoding = encoding) as csv:
+                    csv.write(''.join(list(itertools.islice(file, 0, 1))))
     
         
         
