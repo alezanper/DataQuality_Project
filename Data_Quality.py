@@ -10,8 +10,7 @@ import itertools
 
 encoding = 'iso-8859-1'
 
-class Rules:
-    
+class Rules:  
     
     data = pd.DataFrame()   # Data to work with
     counter = 0             # Size of dataFrame
@@ -84,15 +83,17 @@ class Rules:
     """
     Split
     """
-    def split (filename, numLines):
+    def split(filename, numLines):
         with open(filename, encoding = encoding) as f:
             file = f.readlines()
             size = len(file)
             
             for i in range(int(size/numLines)+1):
-                with open(filename +  str(i), "w", encoding = encoding) as csv:
+                with open('part_' + str(i) + '_' + filename, "w", encoding = encoding) as csv:
                     csv.write(''.join(list(itertools.islice(file, 0, 1))))
-    
+                    csv.write(''.join(list(itertools.islice(file, 1, numLines)))) if (i == 0) else csv.write(''.join(list(itertools.islice(file, numLines*i, numLines + numLines*i))))
+                
+
         
         
         
