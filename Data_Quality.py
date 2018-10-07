@@ -20,20 +20,16 @@ class Rules:
     
     
     """
-    Loading file into dataframe
+    initializing the class
     """
     def __init__(self, filename, delimiter, goods):
         self.goods = goods
         self.delimiter = delimiter
         self.parts = self.split(filename, 70)
-#        self.data = pd.read_csv(filename,
-#                       delimiter = delimiter,
-#                       encoding = encoding)        
-#       self.counter = (self.data).shape[0]
 
     
     """
-    It takes 
+    It takes a filename and returns a dataframe
     """
     def getDataFrame(self, filename):
         data = pd.read_csv(filename,
@@ -42,7 +38,7 @@ class Rules:
         return data
     
     """
-    Split
+    Split a big file into small files
     """
     def split(self, filename, numLines):
         parts = []
@@ -95,6 +91,7 @@ class Rules:
     
     """
     Checking for email structure
+    includes a simple pattern that could be updated according needs
     """
     def checkEmail(self, columnToAnalize):
         return self.checkPattern(columnToAnalize, '[\w]+@[\w]+.com')
