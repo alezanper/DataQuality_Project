@@ -15,8 +15,9 @@ class Rules:
     data = pd.DataFrame()   # Data to work with
     counter = 0             # Size of dataFrame
     goods = False           # False for return bad registers
-    delimiter = ','
-    parts = []
+    delimiter = ','         # Default delimiter
+    parts = []              # part from split function
+    
     
     """
     Loading file into dataframe
@@ -32,6 +33,7 @@ class Rules:
 
     
     """
+    It takes 
     """
     def getDataFrame(self, filename):
         data = pd.read_csv(filename,
@@ -58,11 +60,14 @@ class Rules:
     """
     Checking for null values
     """
-#    def checkNull(self, columnToAnalize):
-#        #Checking for null values
-#        return self.data[self.data[columnToAnalize].isna()
-#                         == (not self.goods)]
-        
+    def checkNulls(self, columnToAnalize):
+        #Checking for null values
+        return self.data[self.data[columnToAnalize].isna()
+                         == (not self.goods)]
+    
+    
+    """
+    """        
     def checkNull(self, columnToAnalize):
         print(self.parts)
         print(len(self.parts))
@@ -75,51 +80,55 @@ class Rules:
     
 
     """
-    Checking for unicity
-    """
-    def checkUnity(self, columnToAnalize, maxRepeated):
-        #Checking for null values
-        if(self.goods):
-            return self.data.groupby(columnToAnalize).filter(lambda x: len(x) == 1)
-        else:
-            return self.data.groupby(columnToAnalize).filter(lambda x: len(x) > maxRepeated)
-        
-
-    """
     Checking for pattern
     """
-    def checkPattern(self, columnToAnalize, pattern):
-        #Checking pattern and returning data that match or not with pattern
-        return self.data[self.data[columnToAnalize].
-                         str.contains(pattern, regex=True) 
-                         == self.goods].append(self.checkNull(columnToAnalize))
+    def checkPattern(self, columnToAnalize, pattern):        
+        for i in range(len(self.parts)):
+            dataPart = self.getDataFrame(self.parts[i])            
+            self.data = self.data.append(
+                    dataPart[dataPart[columnToAnalize].str.contains(pattern, regex=True) 
+                         == self.goods].append(dataPart[dataPart[columnToAnalize].isna()
+                         == (not self.goods)])
+                    )   
+        return self.data
     
     
-    """
-    Checking for data in list reference
-    """
-    def checkListReference(self, listname, columnToAnalize):   
-        listref = pd.read_csv(listname,
-                       delimiter = self.delimiter,
-                       encoding = self.encoding)
-        
-        return self.data[self.data[columnToAnalize].
-                         isin(list(listref['job']))
-                         == self.goods]
-        
-
     """
     Checking for email structure
     """
     def checkEmail(self, columnToAnalize):
         return self.checkPattern(columnToAnalize, '[\w]+@[\w]+.com')
-        
     
-#print(Rules.split('','people.csv', 20))
+    
+    """
+    Checking for data in list reference
+    """
+    def checkListReference(self, listname, listColumn, columnToAnalize):   
+        listref = pd.read_csv(listname,
+                       delimiter = self.delimiter,
+                       encoding = self.encoding)
+        
+        for i in range(len(self.parts)):
+            dataPart = self.getDataFrame(self.parts[i])            
+            self.data = self.data.append(
+                    dataPart[dataPart[columnToAnalize].isin(list(listref[listColumn]))
+                         == self.goods]
+                    )  
+        
+        return self.data
+        
+       
 
-        
-        
-        
+#    """
+#    Checking for unicity
+#    """
+#    def checkUnity(self, columnToAnalize, maxRepeated):
+#        #Checking for null values
+#        if(self.goods):
+#            return self.data.groupby(columnToAnalize).filter(lambda x: len(x) == 1)
+#        else:
+#            return self.data.groupby(columnToAnalize).filter(lambda x: len(x) > maxRepeated)
+                
         
         
         
