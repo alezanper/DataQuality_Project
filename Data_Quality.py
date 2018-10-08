@@ -7,12 +7,12 @@ Created on Sun Sep 01 13:00:15 2018
 
 import pandas as pd 
 import itertools
+import os
 
 
 class Rules:  
     
     encoding = 'iso-8859-1'    
-    data = pd.DataFrame()   # Data to work with
     counter = 0             # Size of dataFrame
     goods = False           # False for return bad registers
     delimiter = ','         # Default delimiter
@@ -25,7 +25,17 @@ class Rules:
     def __init__(self, filename, delimiter, goods):
         self.goods = goods
         self.delimiter = delimiter
-        self.parts = self.split(filename, 70)
+        self.parts = self.split(filename, 100000)
+        
+
+    """
+    Close class and remove data
+    """
+    def close(self):
+        for i in range(len(self.parts)):
+            os.remove(self.parts[i])
+        self.parts = []
+        
 
     
     """
@@ -36,6 +46,7 @@ class Rules:
                        delimiter = self.delimiter,
                        encoding = self.encoding)
         return data
+    
     
     """
     Split a big file into small files
@@ -52,41 +63,36 @@ class Rules:
                     csv.write(''.join(list(itertools.islice(file, 0, 1))))
                     csv.write(''.join(list(itertools.islice(file, 1, numLines)))) if (i == 0) else csv.write(''.join(list(itertools.islice(file, numLines*i, numLines + numLines*i))))
         return parts
-        
+         
+    
     """
     Checking for null values
-    """
-    def checkNulls(self, columnToAnalize):
-        #Checking for null values
-        return self.data[self.data[columnToAnalize].isna()
-                         == (not self.goods)]
-    
-    
-    """
     """        
     def checkNull(self, columnToAnalize):
-        print(self.parts)
-        print(len(self.parts))
+        data = pd.DataFrame()
         
         for i in range(len(self.parts)):
             dataPart = self.getDataFrame(self.parts[i])            
-            self.data = self.data.append(dataPart[dataPart[columnToAnalize].isna()
-                         == (not self.goods)])
-        return self.data
+            data = data.append(
+                    dataPart[dataPart[columnToAnalize].isna()== (not self.goods)]
+                    )
+        return data.reset_index()
     
 
     """
     Checking for pattern
     """
-    def checkPattern(self, columnToAnalize, pattern):        
+    def checkPattern(self, columnToAnalize, pattern):    
+        data = pd.DataFrame()
+
         for i in range(len(self.parts)):
             dataPart = self.getDataFrame(self.parts[i])            
-            self.data = self.data.append(
-                    dataPart[dataPart[columnToAnalize].str.contains(pattern, regex=True) 
+            data = data.append(
+                    dataPart[dataPart[columnToAnalize].astype(str).str.contains(pattern, regex = True) 
                          == self.goods].append(dataPart[dataPart[columnToAnalize].isna()
                          == (not self.goods)])
                     )   
-        return self.data
+        return data.reset_index()
     
     
     """
@@ -98,22 +104,39 @@ class Rules:
     
     
     """
+    Checking for names
+    includes a simple pattern for checking names with only letters
+    """
+    def checkName(self, columnToAnalize):
+        return self.checkPattern(columnToAnalize, '^[A-Za-zñÑÁÉÍÓÚáéíóú]+$')
+    
+
+    """
+    Checking for names
+    includes a simple pattern for checking names with only letters
+    """
+    def checkNumber(self, columnToAnalize):
+        return self.checkPattern(columnToAnalize, '^[0-9]+\.?[0-9]*$')
+    
+    
+    """
     Checking for data in list reference
     """
     def checkListReference(self, listname, listColumn, columnToAnalize):   
+        data = pd.DataFrame()
+
         listref = pd.read_csv(listname,
                        delimiter = self.delimiter,
                        encoding = self.encoding)
         
         for i in range(len(self.parts)):
             dataPart = self.getDataFrame(self.parts[i])            
-            self.data = self.data.append(
+            data = data.append(
                     dataPart[dataPart[columnToAnalize].isin(list(listref[listColumn]))
                          == self.goods]
                     )  
         
-        return self.data
-        
+        return data.reset_index()
        
 
 #    """

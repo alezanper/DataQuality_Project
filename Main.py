@@ -9,15 +9,6 @@ import Data_Quality as DQ
 
 
 
-#print(dataWork.checkListReference('jobs.csv', 'job'))
-
-#print(dataWork.checkEmail('email'))
-
-#print(dataWork.checkNull('email'))
-
-#print(dataWork.checkUnity('email', 7))
-
-
 
 
 
@@ -29,4 +20,8 @@ dataWork = DQ.Rules('people.csv',
 #print(dataWork.checkListReference('jobs.csv', 'job', 'job'))
 #print('.........')
 
-print(dataWork.checkPattern('email', '[\w]+@[\w]+.com'))
+#dataWork.checkPattern('email', '[\w]+@[\w]+.com')
+#print(dataWork.checkListReference('jobs.csv', 'job', 'job'))
+print(dataWork.checkNumber('age'))
+
+dataWork.close()
