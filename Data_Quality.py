@@ -25,7 +25,7 @@ class Rules:
     def __init__(self, filename, delimiter, goods):
         self.goods = goods
         self.delimiter = delimiter
-        # If file analyzed is greater tan 100000 lines it will be partitioned
+        # If file analyzed is greater htan 100000 lines it will be partitioned.
         self.parts = self.split(filename, 100000)   
         
 
@@ -118,6 +118,22 @@ class Rules:
     """
     def checkNumber(self, columnToAnalize):
         return self.checkPattern(columnToAnalize, '^[0-9]+\.?[0-9]*$')
+    
+    
+    """
+    Checking for specific word
+    """
+    def checkContains(self, columnToAnalize, wordToFind):
+        data = pd.DataFrame()
+
+        for i in range(len(self.parts)):
+            dataPart = self.getDataFrame(self.parts[i])            
+            data = data.append(
+                    dataPart[dataPart[columnToAnalize].astype(str).str.contains(wordToFind) 
+                         == self.goods].append(dataPart[dataPart[columnToAnalize].isna()
+                         == self.goods])
+                    )   
+        return data.reset_index()
     
     
     """

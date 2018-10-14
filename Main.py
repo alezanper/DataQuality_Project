@@ -22,6 +22,9 @@ dataWork = DQ.Rules('people.csv',
 
 #dataWork.checkPattern('email', '[\w]+@[\w]+.com')
 #print(dataWork.checkListReference('jobs.csv', 'job', 'job'))
-print(dataWork.checkMaxLength('job', 10))
+#print(dataWork.checkMaxLength('job', 10))
+print(dataWork.checkContains('job', 'developer'))
+
+
 
 dataWork.close()
