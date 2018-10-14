@@ -25,7 +25,8 @@ class Rules:
     def __init__(self, filename, delimiter, goods):
         self.goods = goods
         self.delimiter = delimiter
-        self.parts = self.split(filename, 100000)
+        # If file analyzed is greater tan 100000 lines it will be partitioned
+        self.parts = self.split(filename, 100000)   
         
 
     """
@@ -112,8 +113,8 @@ class Rules:
     
 
     """
-    Checking for names
-    includes a simple pattern for checking names with only letters
+    Checking for numbers
+    includes a simple pattern for checking numbers
     """
     def checkNumber(self, columnToAnalize):
         return self.checkPattern(columnToAnalize, '^[0-9]+\.?[0-9]*$')
@@ -137,7 +138,27 @@ class Rules:
                     )  
         
         return data.reset_index()
-       
+    
+
+    """
+    Checking length
+    """
+    def checkMaxLength(self, columnToAnalize, length):   
+        data = pd.DataFrame()
+        
+        for i in range(len(self.parts)):
+            dataPart = self.getDataFrame(self.parts[i])    
+            if(self.goods):
+                data = data.append(
+                        dataPart[dataPart[columnToAnalize].
+                                        astype(str).str.len() <= length])
+            else:
+                data = data.append(
+                        dataPart[dataPart[columnToAnalize].
+                                        astype(str).str.len() >= length])
+        
+        return data.reset_index()
+    
 
 #    """
 #    Checking for unicity

@@ -15,13 +15,13 @@ import Data_Quality as DQ
 # Start data quality rules 
 dataWork = DQ.Rules('people.csv', 
                     ';', 
-                    False) # False for retrieve bad registers only
+                    True) # False for retrieve bad registers only
 
 #print(dataWork.checkListReference('jobs.csv', 'job', 'job'))
 #print('.........')
 
 #dataWork.checkPattern('email', '[\w]+@[\w]+.com')
 #print(dataWork.checkListReference('jobs.csv', 'job', 'job'))
-print(dataWork.checkNumber('age'))
+print(dataWork.checkMaxLength('job', 10))
 
 dataWork.close()
