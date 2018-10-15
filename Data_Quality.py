@@ -1,7 +1,5 @@
 # -*- coding: utf-8 -*-
 """
-Created on Sun Sep 01 13:00:15 2018
-
 @author: alezanper
 """
 
@@ -121,7 +119,7 @@ class Rules:
     
     
     """
-    Checking for specific word
+    Checking for specific word in a field
     """
     def checkContains(self, columnToAnalize, wordToFind):
         data = pd.DataFrame()
@@ -189,7 +187,7 @@ class Rules:
         
     """
     For cleaning data
-    This is a native function in Pandas adapted for use in big files.
+    This is a native function in Pandas adapted for use in large files.
     """
     def removeReplace(self, columnToImprove, bad, good):   
         data = pd.DataFrame()
@@ -198,21 +196,4 @@ class Rules:
             dataPart = self.getDataFrame(self.parts[i])               
             dataPart[columnToImprove] = dataPart[columnToImprove].str.replace(bad, good)
             data = data.append(dataPart)        
-        return data.reset_index()
-    
-
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-
+        return data.reset_index()  

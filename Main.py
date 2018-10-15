@@ -1,12 +1,9 @@
 # -*- coding: utf-8 -*-
 """
-Created on Sun Sep 01 13:09:29 2018
-
 @author: alezanper
 """
 
 import Data_Quality as DQ
-import pandas as pd
 
 #people = pd.read_csv('people.csv', delimiter=';', encoding = 'iso-8859-1')
 #print(people.head())
