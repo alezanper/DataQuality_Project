@@ -31,7 +31,7 @@ dataWork = DQ.Rules('people.csv',
 #print(dataWork.checkMaxLength('job', 10))
 #print(dataWork.checkContains('job', 'developer'))
 
-print(dataWork.removeBadCharacters('email', '@', '6'))
+print(dataWork.removeReplace('email', '@', '?'))
 
 
 
@@ -42,4 +42,4 @@ print(dataWork.removeBadCharacters('email', '@', '6'))
 
 
 
-#dataWork.close()
+dataWork.close()
