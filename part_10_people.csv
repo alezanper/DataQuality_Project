@@ -1,0 +1,11 @@
+name;job;sex;age;salary;project;email
+Homer;Front Developer;M;30;85000;Project B;Homer@domain.com
+Homer;Front Developer;M;32;85000;Project B;Homer@domain.com
+Bart;Software Developer;M;37;85000;Project B;Bart@domain.com
+Harry;Software Developer;M;33;85000;Project B;Harry@domain.com
+Dvid;Software Developer;M;38;85000;Project B;Dvid@domain.com
+Johan;Software Developer;M;34;85000;Project B;Johan@domain.com
+Maria;Front Developer;F;39;85000;Project B;Maria@domain.com
+Maria;Front Developer;F;39;85000;Project B;Maria@domain.com
+Maria;Front Developer;F;20;85000;Project B;Maria@domain.com
+Mary;Software Developer;F;31;85000;Project A;Mary@domain.com

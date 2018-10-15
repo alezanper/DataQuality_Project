@@ -6,7 +6,13 @@ Created on Sun Sep 01 13:09:29 2018
 """
 
 import Data_Quality as DQ
+import pandas as pd
 
+#people = pd.read_csv('people.csv', delimiter=';', encoding = 'iso-8859-1')
+#print(people.head())
+
+#people['email'] = people['email'].str.replace('@', '?')
+#print(people.head())
 
 
 
@@ -23,8 +29,17 @@ dataWork = DQ.Rules('people.csv',
 #dataWork.checkPattern('email', '[\w]+@[\w]+.com')
 #print(dataWork.checkListReference('jobs.csv', 'job', 'job'))
 #print(dataWork.checkMaxLength('job', 10))
-print(dataWork.checkContains('job', 'developer'))
+#print(dataWork.checkContains('job', 'developer'))
+
+print(dataWork.removeBadCharacters('email', '@', '6'))
 
 
 
-dataWork.close()
+
+
+
+
+
+
+
+#dataWork.close()

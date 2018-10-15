@@ -26,7 +26,7 @@ class Rules:
         self.goods = goods
         self.delimiter = delimiter
         # If file analyzed is greater htan 100000 lines it will be partitioned.
-        self.parts = self.split(filename, 100000)   
+        self.parts = self.split(filename, 10)   
         
 
     """
@@ -187,7 +187,20 @@ class Rules:
 #            return self.data.groupby(columnToAnalize).filter(lambda x: len(x) > maxRepeated)
                 
         
+    """
+    For cleaning data
+    This is a native function in Pandas adapted for use in big files.
+    """
+    def removeReplace(self, columnToImprove, bad, good):   
+        data = pd.DataFrame()
         
+        for i in range(len(self.parts)):
+            dataPart = self.getDataFrame(self.parts[i])               
+            dataPart[columnToImprove] = dataPart[columnToImprove].str.replace(bad, good)
+            data = data.append(dataPart)        
+        return data.reset_index()
+    
+
         
         
         

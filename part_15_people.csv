@@ -1,0 +1,11 @@
+name;job;sex;age;salary;project;email
+Esteban;Software Developer;M;29;97000;Project B;Johan@domain.com
+Johan;Software Developer;M;38;97000;Project B;Johan@domain.com
+Angela;Front Developer;F;28;98000;Project B;Angela@domain.com
+Ned;Data Engineer;M;40;100000;Project B;Ned@domain.com
+Jenny;Data Engineer;F;20;102000;Project B;Jenny@domain.com
+Joaquin;Data Engineer;M;37;1020o0;Project B;123
+Peter;Data Engineer;M;27;102000;Project B;
+Andrea;Front Developer;F;39;105000;Project B;Andrea@domain.com
+Margarette;Data Engineer;F;29;110000;;Margarette@domain.com
+Peter;Data Engineer;M;21;110000;Project B;Peter@domain.com

@@ -1,0 +1,11 @@
+name;job;sex;age;salary;project;email
+Diana;Front Developer;F;20;87800;Project B;Diana@domain.com
+Hector;Front Developer;M;22;87800;Project B;Hector@domain.com
+Homer;Front Developer;M;30;87800;Project B;Homer@domain.com
+Homer;Front Developer;M;32;87800;Project B;Homer@domain.com
+Hernando;Front Developer;M;32;87800;Project B;Hernando@domain.com
+Alejandro;Software Developer;M;24;89000;Project B;Alejandro@domain.com
+Joaquin;Data Engineer;M;23;89000;Project B;Joaquin@domain.com
+Lisa;Data Engineer;F;24;90000;Project B;Lisa@domain.com
+Jacinto;Data Engineer;M;26;90000;Project B;Jacinto@domain.com
+Arnaldo;Data Engineer;M;28;90000;Project B;Arnaldo@domain.com
