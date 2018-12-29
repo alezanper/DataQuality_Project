@@ -5,7 +5,7 @@
 import Address
 
 
-mAddress = Address.address('calle : 45, , , ,,  67; 78')
-
+mAddress = Address.address('calle 45. carrera 56 67 ,,,')
+                           
 print(mAddress.getParts())
 
