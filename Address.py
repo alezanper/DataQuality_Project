@@ -31,13 +31,17 @@ class address:
         self.addressParts = addrClean.upper().split()
         
     """
-    Function for getting token from a address part.
+    Function for getting token from an address part.
     """
     def getToken(self, part):
         if re.match('^[A-ZÑ]+$', part):
             return '+'
         elif re.match('^[0-9]+$', part):
             return '^'
+        elif re.match('^[0-9]+[A-ZÑ]+$', part):
+            return '>'
+        elif re.match('^[A-ZÑ]+[0-9]+$', part):
+            return '<'
         else: return part
         
     """
