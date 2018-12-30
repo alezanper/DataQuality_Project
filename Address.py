@@ -10,6 +10,9 @@ class address:
     
     addressParts = []
     addressTokens = []    
+    
+    urbanBlock = []
+    
     l = 0;
     
     """
@@ -19,6 +22,7 @@ class address:
         self.extractParts(addr)
         self.l = len(self.addressParts)
         self.extractTokens()
+        self.createUrbanBlock()
 
         
     """
@@ -55,12 +59,25 @@ class address:
         for i in range(self.l):
             self.addressTokens.append(self.getToken(self.addressParts[i]))
             
-        
+
+    """
+    """
+    
+    def createUrbanBlock(self):
+        for i in range(self.l):
+            if self.addressTokens[i] != 'P':
+                self.urbanBlock.append(self.addressParts[i])  
+            else: break;
+    
+    
+    def getUrbanBlock(self):
+        return self.urbanBlock    
+    
     def getParts(self):
-        return self.addressParts;
+        return self.addressParts
         
     def getTokens(self):
-        return self.addressTokens;    
+        return self.addressTokens; 
     
     badTokens = [';', ',', '$', ':', '.']
     

@@ -9,4 +9,4 @@ mAddress = Address.address('calle 56a carrera 56 67 apartamento 345,,edificio la
                            
 print(mAddress.getParts())
 print(mAddress.getTokens())
-
+print(mAddress.getUrbanBlock())
