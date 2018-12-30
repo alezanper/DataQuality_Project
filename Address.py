@@ -34,7 +34,11 @@ class address:
     Function for getting token from an address part.
     """
     def getToken(self, part):
-        if re.match('^[A-ZÑ]+$', part):
+        if part in self.urban:
+            return 'U'
+        elif part in self.prop:
+            return 'P'
+        elif re.match('^[A-ZÑ]+$', part):
             return '+'
         elif re.match('^[0-9]+$', part):
             return '^'
@@ -59,6 +63,22 @@ class address:
         return self.addressTokens;    
     
     badTokens = [';', ',', '$', ':', '.']
+    
+    urban = {'CL': 'CL',
+             'CALLE': 'CL',
+             'CAL': 'CL',
+             'CARRERA': 'CR',
+             'CR': 'CR',
+             'DG': 'DG',
+             'DIAGONAL': 'DG'}
+    
+    prop = {'APT': 'APT',
+            'APARTAMENTO': 'APT',
+            'CS': 'CS',
+            'CASA': 'CS',
+            'ED': 'ED',
+            'EDIFICIO': 'ED',
+            'EDIFI': 'ED'}
         
         
         
