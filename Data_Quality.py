@@ -34,8 +34,6 @@ class Rules:
         for i in range(len(self.parts)):
             os.remove(self.parts[i])
         self.parts = []
-        
-
     
     """
     It takes a filename and returns a dataframe
@@ -45,7 +43,7 @@ class Rules:
                        delimiter = self.delimiter,
                        encoding = self.encoding)
         return data
-    
+
     
     """
     Split a big file into small files

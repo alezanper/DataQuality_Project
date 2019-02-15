@@ -64,6 +64,7 @@ class address:
     """
     
     def createUrbanBlock(self):
+        
         for i in range(self.l):
             if self.addressTokens[i] != 'P':
                 self.urbanBlock.append(self.addressParts[i])  
