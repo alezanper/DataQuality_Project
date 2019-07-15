@@ -23,8 +23,7 @@ class Rules:
     def __init__(self, filename, delimiter, goods):
         self.goods = goods
         self.delimiter = delimiter
-        # If file analyzed is greater htan 100000 lines it will be partitioned.
-        self.parts = self.split(filename, 10)   
+        self.parts = self.split(filename, 50)   
         
 
     """
@@ -126,9 +125,8 @@ class Rules:
             dataPart = self.getDataFrame(self.parts[i])            
             data = data.append(
                     dataPart[dataPart[columnToAnalize].astype(str).str.contains(wordToFind) 
-                         == self.goods].append(dataPart[dataPart[columnToAnalize].isna()
                          == self.goods])
-                    )   
+                       
         return data.reset_index()
     
     
