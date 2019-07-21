@@ -64,7 +64,6 @@ class address:
     """
     
     def createUrbanBlock(self):
-        
         for i in range(self.l):
             if self.addressTokens[i] != 'P':
                 self.urbanBlock.append(self.addressParts[i])  
@@ -80,7 +79,7 @@ class address:
     def getTokens(self):
         return self.addressTokens; 
     
-    badTokens = [';', ',', '$', ':', '.']
+    badTokens = [';', ',', '$', ':', '.', '@', '#', '!', '%']
     
     urban = {'CL': 'CL',
              'CALLE': 'CL',
@@ -88,7 +87,8 @@ class address:
              'CARRERA': 'CR',
              'CR': 'CR',
              'DG': 'DG',
-             'DIAGONAL': 'DG'}
+             'DIAGONAL': 'DG',
+             'DIAG': 'DG'}
     
     prop = {'APT': 'APT',
             'APARTAMENTO': 'APT',
@@ -96,7 +96,9 @@ class address:
             'CASA': 'CS',
             'ED': 'ED',
             'EDIFICIO': 'ED',
-            'EDIFI': 'ED'}
+            'EDIFI': 'ED',
+            'MANZANA': 'MZ',
+            'MZ': 'MZ'}
         
         
         
